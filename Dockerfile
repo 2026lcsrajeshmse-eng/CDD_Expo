@@ -5,7 +5,7 @@ WORKDIR /app
 COPY backend/package*.json ./backend/
 RUN cd backend && npm ci
 COPY backend ./backend
-RUN cd backend && DATABASE_URL=postgresql://build:build@localhost:5432/build?schema=public npx prisma generate
+RUN cd backend && DATABASE_URL=mongodb://build:build@localhost:27017/build?replicaSet=rs0 npx prisma generate
 
 COPY frontend/package*.json ./frontend/
 RUN cd frontend && npm ci
